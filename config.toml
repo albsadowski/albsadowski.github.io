@@ -1,4 +1,4 @@
-baseURL = "https://dumpstate.github.io/"
+baseURL = "https://dumpstate.github.io"
 languageCode = "en-us"
 title = "albert's blog"
 theme = "etch"
