@@ -1,0 +1,28 @@
+baseURL = "https://dumpstate.github.io/"
+languageCode = "en-us"
+title = "albert's blog"
+theme = "etch"
+
+[params]
+    description = "albert's blog"
+    copyright = "Copyright © 2023 Albert Sadowski"
+    dark = "auto"
+    highlight = true
+
+[menu]
+    [[menu.main]]
+        identifier = "posts"
+        name = "posts"
+        title = "posts"
+        url = "/"
+        weight = 10
+
+    [[menu.main]]
+        identifier = "about"
+        name = "about"
+        title = "about"
+        url = "/about/"
+        weight = 20
+
+[permalinks]
+    posts = "/:title/"
