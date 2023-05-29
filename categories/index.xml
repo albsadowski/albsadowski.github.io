@@ -1,4 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Categories on albert's blog</title><link>https://dumpstate.github.io/categories/</link><description>Recent content in Categories on albert's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://dumpstate.github.io/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>Simple NLP Search</title><link>https://dumpstate.github.io/simple-nlp-search/</link><pubDate>Thu, 05 May 2016 23:29:33 +0000</pubDate><guid>https://dumpstate.github.io/simple-nlp-search/</guid><description>&lt;p>Full text search is easy to use. But the inherent ambiguity of natural languages
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Categories on albert's blog</title><link>https://dumpstate.github.io/categories/</link><description>Recent content in Categories on albert's blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://dumpstate.github.io/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>Reader Monad for DB Connection in TypeScript</title><link>https://dumpstate.github.io/reader-monad-for-db-connection-in-typescript/</link><pubDate>Mon, 29 May 2023 00:00:00 +0000</pubDate><guid>https://dumpstate.github.io/reader-monad-for-db-connection-in-typescript/</guid><description>&lt;h2 id="mvcs">MVC(S)&lt;/h2>
+&lt;p>The &lt;em>Model-View-Controller&lt;/em> is usually a standard pattern for building web applications. Whether the &lt;em>view&lt;/em> is expressed as HTML or perhaps just plain JSON, it helps to structure the application in an elegant way.&lt;/p>
+&lt;p>The &lt;em>Model&lt;/em> is a set of components responsible for representing the persistence layer, often in the form of some ORM classes. &lt;em>View&lt;/em> maintains the recipe for generating the &lt;em>view&lt;/em> given the &lt;em>model&lt;/em>. Finally &lt;em>controller&lt;/em> glues both parts together and deals with the other problems inherent in web development, such as parsing and interpreting query parameters.&lt;/p>
+&lt;p>Where does the business logic live? As long as the application is trivial, the &lt;em>model&lt;/em> representation, combined with the power of ORMs, provides a powerful tool for manifesting the business domain. Then, the actual logic, either leaks to the &lt;em>controller&lt;/em> or requires another component in the MVC pattern.&lt;/p>
+&lt;p>The &lt;em>service&lt;/em> could be one of these components. The &lt;em>service&lt;/em> sits between the &lt;em>controller&lt;/em> and the &lt;em>model&lt;/em>, either by contructing higher level &lt;em>model&lt;/em> objects (non-ORM), or by simply enriching the ORM objects with an additional computation.&lt;/p>
+&lt;h2 id="acid">ACID&lt;/h2>
+&lt;p>As the application grows, the &lt;em>services&lt;/em> become complex, often forming a hierarchy. Assuming there&amp;rsquo;s still a database-backed &lt;em>model&lt;/em> under the hood, all the &lt;em>services&lt;/em> do is run a sequence of database queries to either read or mutate the state of the system.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">controllerMethod() {&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">res1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">service1&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">service2&lt;/span>(&lt;span style="color:#a6e22e">res1&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>How can we ensure that a &lt;em>controller&lt;/em> calling one or more &lt;em>services&lt;/em>, maintains the &lt;em>transation&lt;/em> boundary? We need to make all the components aware of the current state of the transaction. The current transaction state is usually just an instance of a &lt;em>database connection&lt;/em>. And that&amp;rsquo;s the moment where an implementation &lt;em>detail&lt;/em> of the &lt;em>model&lt;/em> brutally leaks through the MVC(S) stack.&lt;/p>
+&lt;p>If you want to make a &lt;em>service&lt;/em> transactional, it should accept a &lt;em>database connection&lt;/em> as a parameter on every method of a &lt;em>service&lt;/em>. This is inconvenient and tightly couples all of the web application code to a chosen database (+ probably a chosen ORM/similar).&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">controllerMethod() {&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">tr&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">dbPool&lt;/span>.&lt;span style="color:#a6e22e">transact&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">res1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">service1&lt;/span>(&lt;span style="color:#a6e22e">tr&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">res2&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">service2&lt;/span>(&lt;span style="color:#a6e22e">tr&lt;/span>, &lt;span style="color:#a6e22e">res1&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">tr&lt;/span>.&lt;span style="color:#a6e22e">commit&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">res2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">catch&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">tr&lt;/span>.&lt;span style="color:#a6e22e">rollback&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Another way to solve this problem via the state of the &lt;em>request&lt;/em> - but the problem is equivalent - now we either inject the &lt;em>request&lt;/em> or couple application code with a chosen web framework.&lt;/p>
+&lt;p>The approach suggested in this blog post is the &lt;em>monad way&lt;/em>.&lt;/p>
+&lt;h2 id="the-monad-way">The Monad Way&lt;/h2>
+&lt;p>The &lt;a href="https://hackage.haskell.org/package/mtl-2.3.1/docs/Control-Monad-Reader.html">&lt;em>Reader monad&lt;/em>&lt;/a> is a well known pattern in the &lt;em>Haskell&lt;/em> community to solve the problem of a shared &lt;em>environment&lt;/em> between several components of the system.&lt;/p>
+&lt;p>The idea is quite simple:&lt;/p>
+&lt;ol>
+&lt;li>do not require the &lt;em>environment&lt;/em> until you actually need it,&lt;/li>
+&lt;li>use &lt;em>monad&lt;/em> properties to compose functions that depends on the &lt;em>environment&lt;/em>.&lt;/li>
+&lt;/ol>
+&lt;p>In our case, the &lt;em>environment&lt;/em> is a database connection - either raw connection, or a transaction.&lt;/p>
+&lt;p>Point (1) above, is easier said than done, but in practice we can describe the whole computation process as a chain of lazily evaluated functions. Then, the final artefact should be a function that actually executes the program given the &lt;em>environment&lt;/em> (database connection).&lt;/p>
+&lt;p>For &lt;em>TypeScript&lt;/em> I have extracted the boilerplate into &lt;a href="https://github.com/dumpstate/dbaction">&lt;em>DBAction&lt;/em>&lt;/a> library, an example:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">controllerMethod() {&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">service1&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">flatMap&lt;/span>(&lt;span style="color:#a6e22e">res&lt;/span> &lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">service2&lt;/span>(&lt;span style="color:#a6e22e">res&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">transact&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">transactor&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Let&amp;rsquo;s break this down:&lt;/p>
+&lt;h3 id="dbaction">DBAction&lt;/h3>
+&lt;p>&lt;em>DBAction&lt;/em> is an actual &lt;em>reader monad&lt;/em> for the database connection. What services return is not a &lt;code>Promise&amp;lt;Result&amp;gt;&lt;/code> type (a &lt;em>promise&lt;/em> of some kind of result), but &lt;code>DBAction&amp;lt;Result&amp;gt;&lt;/code>. After the service is called &lt;code>this.service1()&lt;/code>, nothing happens until we either &lt;code>run&lt;/code> or &lt;code>transact&lt;/code> the &lt;code>DBAction&lt;/code>. The value is referentially transparent, so if you call &lt;code>this.service1&lt;/code> with the same input, you&amp;rsquo;ll always get the same result.&lt;/p>
+&lt;p>The cost of this approach, is that all the components involved in the chain, must return &lt;em>DBActions&lt;/em>. On the implementation side, this means that the moment you actually need the database connection, you should wrap it in a function that takes &lt;em>database connection&lt;/em> as its only argument and returns a &lt;em>promise&lt;/em> of some result type, e.g.:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">service1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">DBAction&lt;/span>((&lt;span style="color:#a6e22e">conn&lt;/span>) &lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#a6e22e">conn&lt;/span>.&lt;span style="color:#a6e22e">query&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;select...&amp;#34;&lt;/span>))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>There are two methods available on the &lt;em>DBAction&lt;/em> that should help composing the monad:&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>.map&amp;lt;K&amp;gt;(fn: (item: T) =&amp;gt; K)&lt;/code> - mapping inner value into another value,&lt;/li>
+&lt;li>&lt;code>.flatMap&amp;lt;K&amp;gt;(fn: (item: T) =&amp;gt; DBAction&amp;lt;K&amp;gt;)&lt;/code> - mapping inner value into another value, where the &lt;code>fn&lt;/code> function also require the &lt;em>database connection&lt;/em> for the computation.&lt;/li>
+&lt;/ol>
+&lt;p>The &lt;em>DBAction&lt;/em> can be:&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>.run(tr: Transactor): Promise&amp;lt;T&amp;gt;&lt;/code> - meaning the transactor will inject plain database connection into the chain,&lt;/li>
+&lt;li>&lt;code>.transact(tr: Transactor): Promise&amp;lt;T&amp;gt;&lt;/code> - the transactor will start the transaction and then inject the connection into the chain, finally &lt;em>commit&lt;/em> or &lt;em>rollback&lt;/em>.&lt;/li>
+&lt;/ol>
+&lt;h3 id="transactor">Transactor&lt;/h3>
+&lt;p>The &lt;em>transactor&lt;/em> is a component that knows:&lt;/p>
+&lt;ol>
+&lt;li>the type of the database connection,&lt;/li>
+&lt;li>the details of establishing the database connection, or requesting the connection from the pool,&lt;/li>
+&lt;li>the details of executing the query and/or managing the transaction context.&lt;/li>
+&lt;/ol>
+&lt;p>The &lt;em>transactor&lt;/em> is database specific and depends on the database driver. There should be a single transactor for the entire application.&lt;/p>
+&lt;p>As of now, &lt;em>DBAction&lt;/em> offers the one for &lt;em>PostgreSQL&lt;/em>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> { &lt;span style="color:#a6e22e">Transactor&lt;/span> } &lt;span style="color:#66d9ef">from&lt;/span> &lt;span style="color:#e6db74">&amp;#34;@dumpstate/dbaction/lib/PG&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// `pool` - an instance of `pg` connection pool
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">tr&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">Transactor&lt;/span>(&lt;span style="color:#a6e22e">pool&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="utilities">Utilities&lt;/h3>
+&lt;p>The utilities available in the library, useful for composing the monad:&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>flatten&lt;/code> - tranforms an array of &lt;code>DBAction&lt;/code>s into a &lt;code>DBAction&lt;/code> of an array of values,&lt;/li>
+&lt;li>&lt;code>pure&lt;/code> - wraps a scalar / promise / function returning a promise with a &lt;code>DBAction&lt;/code> - useful to lift non-&lt;em>DBAction&lt;/em> into a &lt;em>DBAction&lt;/em>.&lt;/li>
+&lt;li>&lt;code>chain&lt;/code> - builds a sequential chain of &lt;em>DBActions&lt;/em> - result of a previous is an argument for the latter,&lt;/li>
+&lt;li>&lt;code>sequence&lt;/code> - runs operations concurrently; returns a single &lt;code>DBAction&lt;/code>,&lt;/li>
+&lt;li>&lt;code>query&lt;/code> - creates a &lt;em>DBAction&lt;/em> for a query string.&lt;/li>
+&lt;/ol>
+&lt;h2 id="links">Links&lt;/h2>
+&lt;ol>
+&lt;li>&lt;a href="https://github.com/dumpstate/dbaction">&lt;em>DBAction&lt;/em> GitHub Repository&lt;/a>.&lt;/li>
+&lt;li>&lt;a href="https://hackage.haskell.org/package/mtl-2.3.1/docs/Control-Monad-Reader.html">&lt;em>Reader Monad&lt;/em>&lt;/a>.&lt;/li>
+&lt;li>Heavily inspired by &lt;a href="https://tpolecat.github.io/doobie/">&lt;em>doobie&lt;/em>&lt;/a>.&lt;/li>
+&lt;/ol></description></item><item><title>Simple NLP Search</title><link>https://dumpstate.github.io/simple-nlp-search/</link><pubDate>Thu, 05 May 2016 23:29:33 +0000</pubDate><guid>https://dumpstate.github.io/simple-nlp-search/</guid><description>&lt;p>Full text search is easy to use. But the inherent ambiguity of natural languages
 causes search results to be biased with false positives. To obtain more accurate results, we need to change the approach and provide more domain specific data to the search engine.&lt;/p>
 &lt;p>The most common and easiest to improve search results is to introduce filters, i.e. multiple input fields (text fields, radio buttons etc.) named after properties. This way we know how to shape the query and then return specific results. In combination with some approximate string matching algorithms, we may obtain very accurate search results. Unfortunately filters require forms with multiple fields at the cost of simple UX. (see &lt;em>Figure 1&lt;/em>).&lt;/p>
 &lt;p>&lt;img src="./ebay-motors.png" alt="Figure 1">&lt;/p>
