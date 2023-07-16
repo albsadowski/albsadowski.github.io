@@ -56,7 +56,7 @@
 &lt;h2 id="links">Links&lt;/h2>
 &lt;ol>
 &lt;li>&lt;a href="https://ajv.js.org/">Ajv&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://ajv.js.org/">@dumpstate/config&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/dumpstate/config">@dumpstate/config&lt;/a>&lt;/li>
 &lt;/ol></description></item><item><title>Reader Monad for DB Connection in TypeScript</title><link>https://dumpstate.github.io/reader-monad-for-db-connection-in-typescript/</link><pubDate>Mon, 29 May 2023 00:00:00 +0000</pubDate><guid>https://dumpstate.github.io/reader-monad-for-db-connection-in-typescript/</guid><description>&lt;h2 id="mvcs">MVC(S)&lt;/h2>
 &lt;p>The &lt;em>Model-View-Controller&lt;/em> is usually a standard pattern for building web applications. Whether the &lt;em>view&lt;/em> is expressed as HTML or perhaps just plain JSON, it helps to structure the application in an elegant way.&lt;/p>
 &lt;p>The &lt;em>Model&lt;/em> is a set of components responsible for representing the persistence layer, often in the form of some ORM classes. &lt;em>View&lt;/em> maintains the recipe for generating the &lt;em>view&lt;/em> given the &lt;em>model&lt;/em>. Finally &lt;em>controller&lt;/em> glues both parts together and deals with the other problems inherent in web development, such as parsing and interpreting query parameters.&lt;/p>
