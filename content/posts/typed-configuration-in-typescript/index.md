@@ -67,3 +67,8 @@ const config = loadConfig(ConfigSchema, { appName: "foo" })
 * loads any file provided as `APPLICATION_CONFIG` environment variable.
 2. environment configuration loader:
 * expects environment variables in the format e.g., `${appName}__APP__HOST`, where the `appName` is the name of the application passed to the `loadConfig`, then all `.` on the JSON path are transformed into `__` and camel cased properties are snake cased.
+
+## Links
+
+1. [Ajv](https://ajv.js.org/)
+2. [@dumpstate/config](https://ajv.js.org/)
