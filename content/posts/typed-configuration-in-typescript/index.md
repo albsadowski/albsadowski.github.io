@@ -71,4 +71,4 @@ const config = loadConfig(ConfigSchema, { appName: "foo" })
 ## Links
 
 1. [Ajv](https://ajv.js.org/)
-2. [@dumpstate/config](https://ajv.js.org/)
+2. [@dumpstate/config](https://github.com/dumpstate/config)
