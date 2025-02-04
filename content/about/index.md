@@ -6,6 +6,5 @@ Hey I'm Albert.
 
 ## Links
 
-* [GitHub](https://github.com/dumpstate)
+* [GitHub](https://github.com/albsadowski)
 * [LinkedIn](https://www.linkedin.com/in/albertsadowski)
-* [Resume](https://dumpstate.github.io/resume/)

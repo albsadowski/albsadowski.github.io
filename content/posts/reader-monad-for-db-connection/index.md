@@ -60,7 +60,7 @@ In our case, the _environment_ is a database connection - either raw connection,
 
 Point (1) above, is easier said than done, but in practice we can describe the whole computation process as a chain of lazily evaluated functions. Then, the final artefact should be a function that actually executes the program given the _environment_ (database connection).
 
-For _TypeScript_ I have extracted the boilerplate into [_DBAction_](https://github.com/dumpstate/dbaction) library, an example:
+For _TypeScript_ I have extracted the boilerplate into [_DBAction_](https://github.com/albsadowski/dbaction) library, an example:
 
 ```ts
 async function controllerMethod() {
@@ -119,6 +119,6 @@ The utilities available in the library, useful for composing the monad:
 
 ## Links
 
-1. [_DBAction_ GitHub Repository](https://github.com/dumpstate/dbaction).
+1. [_DBAction_ GitHub Repository](https://github.com/albsadowski/dbaction).
 2. [_Reader Monad_](https://hackage.haskell.org/package/mtl-2.3.1/docs/Control-Monad-Reader.html).
 3. Heavily inspired by [_doobie_](https://tpolecat.github.io/doobie/).

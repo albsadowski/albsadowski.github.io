@@ -34,7 +34,7 @@ When writing a nodejs application, one of the first dynamically typed pieces of 
 
 With Ajv, one can define a configuration schema, leverage that for validation purposes and use the magic of type transformation to get the typings for the schema.
 
-As there's some boilerplate around reading files/environment, I ended up extracing that into a small, Ajv-based, library [@dumpstate/config](https://github.com/dumpstate/config).
+As there's some boilerplate around reading files/environment, I ended up extracing that into a small, Ajv-based, library [@dumpstate/config](https://github.com/albsadowski/config).
 
 From now on, when I deal with configuration in nodejs, my code looks as follows:
 
@@ -71,4 +71,4 @@ const config = loadConfig(ConfigSchema, { appName: "foo" })
 ## Links
 
 1. [Ajv](https://ajv.js.org/)
-2. [@dumpstate/config](https://github.com/dumpstate/config)
+2. [@dumpstate/config](https://github.com/albsadowski/config)

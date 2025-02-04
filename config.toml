@@ -1,11 +1,11 @@
-baseURL = "https://dumpstate.github.io"
+baseURL = "https://albsadowski.github.io"
 languageCode = "en-us"
 title = "albert's blog"
 theme = "etch"
 
 [params]
     description = "albert's blog"
-    copyright = "Copyright © 2023 Albert Sadowski"
+    copyright = "Copyright © 2025 Albert Sadowski"
     dark = "auto"
     highlight = true
 
