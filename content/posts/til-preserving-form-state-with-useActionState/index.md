@@ -1,5 +1,5 @@
 ---
-title: "TIL: Preserving Form State with React's useActionState Hook"
+title: "Preserving Form State with React's useActionState Hook"
 date: 2025-03-01
 draft: false
 ---

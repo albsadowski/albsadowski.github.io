@@ -18,10 +18,10 @@ theme = "etch"
         weight = 10
 
     [[menu.main]]
-        identifier = "publications"
-        name = "publications"
-        title = "publications"
-        url = "/publications/"
+        identifier = "research"
+        name = "research"
+        title = "research"
+        url = "/research/"
         weight = 10
 
     [[menu.main]]
