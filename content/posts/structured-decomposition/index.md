@@ -28,7 +28,7 @@ Instead of getting one long explanation mixing interpretation with reasoning, I 
 
 The results were encouraging. On hearsay cases (_LegalBench_), this approach achieved 92.9% accuracy (F1) on _o1_ compared to 71.4% with standard prompting. More interesting was the transparency. When the system made mistakes, I could trace exactly where things went wrong. Sometimes it misidentified entities, sometimes it missed crucial relationships, sometimes the logical rules had gaps.
 
-This was just one experiment in one narrow domain. The approach feels brittle in practice - it requires careful prompt engineering and works much better with some models than others. The OpenAI o-family models showed substantial improvements, while other architectures struggled with the structured output requirements.
+This was just one experiment in one narrow domain. The approach feels brittle in practice - it requires careful prompt engineering and works much better with some models than others. The OpenAI o-family models showed substantial improvements, while others struggled.
 
 But it points toward something useful: maybe building explainable AI systems isn't about solving the entire black box problem at once. Maybe it's about creating explicit inspection points where humans can verify reasoning components step by step. The three-step framework is just one way to think about decomposition, but it suggests we can build AI systems that show their work systematically, not just provide post-hoc explanations.
 
