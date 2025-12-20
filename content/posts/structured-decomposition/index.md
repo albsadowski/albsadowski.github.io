@@ -32,4 +32,4 @@ This was just one experiment in one narrow domain. The approach feels brittle in
 
 But it points toward something useful: maybe building explainable AI systems isn't about solving the entire black box problem at once. Maybe it's about creating explicit inspection points where humans can verify reasoning components step by step. The three-step framework is just one way to think about decomposition, but it suggests we can build AI systems that show their work systematically, not just provide post-hoc explanations.
 
-If you're interested in the technical details and experimental results, the full paper is [available here](https://arxiv.org/abs/2506.16335).
+If you're interested in the technical details and experimental results, the full paper is [available here](https://doi.org/10.1016/j.procs.2025.09.337).
