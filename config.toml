@@ -12,8 +12,8 @@ theme = "etch"
 [menu]
     [[menu.main]]
         identifier = "posts"
-        name = "posts"
-        title = "posts"
+        name = "notes"
+        title = "notes"
         url = "/"
         weight = 10
 

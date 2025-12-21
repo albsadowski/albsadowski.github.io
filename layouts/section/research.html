@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <h3>{{ .Title }}</h3>
+  <h3>{{ i18n "research.title" }}</h3>
 
   <ul id="posts">
     {{ range .Pages.ByDate.Reverse }}
