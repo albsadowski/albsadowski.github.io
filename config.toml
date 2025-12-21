@@ -1,10 +1,10 @@
-baseURL = "https://albsadowski.github.io"
+baseURL = "https://asadowski.com"
 languageCode = "en-us"
-title = "albert's blog"
+title = "albert's notes"
 theme = "etch"
 
 [params]
-    description = "albert's blog"
+    description = "albert's notes"
     copyright = "Copyright © 2025 Albert Sadowski"
     dark = "auto"
     highlight = true

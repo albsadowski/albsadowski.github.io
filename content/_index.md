@@ -1,3 +1,3 @@
 ---
-title: "Home"
+title: "albert's notes"
 ---
