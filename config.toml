@@ -5,7 +5,7 @@ theme = "etch"
 
 [params]
     description = "albert's notes"
-    copyright = "Copyright © 2025 Albert Sadowski"
+    copyright = "Copyright © 2026 Albert Sadowski"
     dark = "auto"
     highlight = true
 
