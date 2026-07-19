@@ -8,4 +8,4 @@ Presented at [LAMAS&SR 2026](https://strategic-reasoning.github.io/lamassr26/) w
 
 Preprint: [arXiv](https://arxiv.org/abs/2605.31581)
 
-Presentation: [SlideShare](https://www.slideshare.net/slideshow/choosing-the-lens-strategic-perspective-activation-in-context-dependent-argumentation-frameworks/288660697)
+Presentation: [SlideShare](https://www.slideshare.net/slideshow/strategic-perspective-activation-in-context-dependent-argumentation-frameworks/288664161)
