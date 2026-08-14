@@ -6,6 +6,6 @@ draft: false
 
 Accepted to [KES 2026](http://kes2026.kesinternational.org/) conference.
 
-Preprint: [zenodo](https://doi.org/10.5281/zenodo.21425963)
+Preprint: [arXiv](http://arxiv.org/abs/2608.12326)
 
 Source Code: [GitHub](https://github.com/albsadowski/ontology-learning-eval)
