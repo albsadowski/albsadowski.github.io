@@ -1,6 +1,7 @@
 ---
 title: "Rashomon Memory: Towards Argumentation-Driven Retrieval for Multi-Perspective Agent Memory"
 date: 2026-04-07
+venue: "EXTRAAMAS 2026"
 draft: false
 ---
 

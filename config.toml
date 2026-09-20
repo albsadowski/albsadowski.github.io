@@ -1,35 +1,29 @@
 baseURL = "https://asadowski.com"
-languageCode = "en-us"
+locale = "en-us"
 title = "albert's notes"
-theme = "etch"
 
 [params]
-    description = "albert's notes"
+    description = "Notes and publications by Albert Sadowski - software engineer interested in security and machine learning."
     copyright = "Copyright © 2026 Albert Sadowski"
-    dark = "auto"
     highlight = true
+    mainSections = ["posts"]
 
-[menu]
-    [[menu.main]]
-        identifier = "posts"
-        name = "notes"
-        title = "notes"
-        url = "/"
-        weight = 10
+    [[params.contact]]
+        name = "GitHub"
+        url = "https://github.com/albsadowski"
 
-    [[menu.main]]
-        identifier = "research"
-        name = "research"
-        title = "research"
-        url = "/research/"
-        weight = 10
+    [[params.contact]]
+        name = "LinkedIn"
+        url = "https://www.linkedin.com/in/albertsadowski"
 
-    [[menu.main]]
-        identifier = "about"
-        name = "about"
-        title = "about"
-        url = "/about/"
-        weight = 20
+    [[params.contact]]
+        name = "Google Scholar"
+        url = "https://scholar.google.com/citations?user=kDoZLE0AAAAJ"
+
+[markup]
+    [markup.highlight]
+        noClasses = false
+        style = "github"
 
 [permalinks]
     posts = "/:title/"

@@ -1,6 +1,7 @@
 ---
 title: "On Verifiable Legal Reasoning: A Multi-Agent Framework with Formalized Knowledge Representations"
 date: 2025-08-31
+venue: "CIKM 2025"
 draft: false
 ---
 

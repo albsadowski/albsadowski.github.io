@@ -1,6 +1,7 @@
 ---
 title: "Choosing the Lens: Strategic Perspective Activation in Context-Dependent Argumentation"
 date: 2026-06-01
+venue: "LAMAS&SR 2026"
 draft: false
 ---
 

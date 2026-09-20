@@ -1,0 +1,41 @@
+{{ define "main" }}
+<header class="site-header">
+    <h1><a href="{{ .Site.Home.Permalink }}">{{ .Site.Title }}</a></h1>
+</header>
+
+{{ with .Site.Params.contact }}
+<div class="section" id="contact">
+    <h4>Contact</h4>
+    <ul class="plain">
+        {{ range . }}
+        <li><a href="{{ .url }}">{{ .name }}</a></li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+
+<hr>
+
+<div class="section" id="bio">
+    <h4>Biography</h4>
+    {{ .Content }}
+</div>
+
+{{ with (where .Site.RegularPages "Section" "research").ByDate.Reverse }}
+<div class="section" id="publications">
+    <h4>Publications</h4>
+    <ul id="items">
+        {{ range . }}{{ .Render "li" }}{{ end }}
+    </ul>
+</div>
+{{ end }}
+
+{{ with (where .Site.RegularPages "Type" "in" .Site.Params.mainSections).ByDate.Reverse }}
+<div class="section" id="notes">
+    <h4>Notes</h4>
+    <ul id="items">
+        {{ range . }}{{ .Render "li" }}{{ end }}
+    </ul>
+</div>
+{{ end }}
+{{ end }}

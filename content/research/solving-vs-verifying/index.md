@@ -1,6 +1,7 @@
 ---
 title: "Solving versus Verifying: Catching Contradictions in Tax Reasoning Systems"
 date: 2026-09-09
+venue: "ICTAI 2026"
 draft: false
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "On Measuring Semantic Preservation in Legal Ontology Learning"
 date: 2026-07-18
+venue: "KES 2026"
 draft: false
 ---
 

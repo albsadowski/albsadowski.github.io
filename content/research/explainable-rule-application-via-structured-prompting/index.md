@@ -1,6 +1,7 @@
 ---
 title: "Explainable Rule Application via Structured Prompting: A Neural-Symbolic Approach"
 date: 2025-06-19
+venue: "KES 2025"
 draft: false
 ---
 

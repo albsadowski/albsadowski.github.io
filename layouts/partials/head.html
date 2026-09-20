@@ -1,34 +1,36 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{ with .Site.Params.description -}}
-    <meta name="description" content="{{ . }}">
-    {{ end }}
-    {{ printf `<link rel="shortcut icon" href="%s">` ("favicon.ico" | absURL) | safeHTML }}
+
+    {{- $title := .Title -}}
+    {{- if not .IsHome -}}
+        {{- $title = printf "%s · %s" .Title .Site.Title -}}
+    {{- end }}
+    <title>{{ $title }}</title>
+
+    {{- $description := .Description | default .Site.Params.description }}
+    <meta name="description" content="{{ $description }}">
+
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fbfaf8'/%3E%3Ctext x='16' y='23' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-size='21' font-weight='600' text-anchor='middle' fill='%23b4562f'%3Ea%3C/text%3E%3C/svg%3E">
+
     {{ with .OutputFormats.Get "rss" -}}
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-    {{ end -}}
+    {{ end }}
 
-    {{ $resources := slice -}}
-
-    {{ $resources = $resources | append (resources.Get "css/main.css") -}}
-
-    {{ $resources = $resources | append (resources.Get "css/min770px.css") -}}
-
-    {{ $dark := .Site.Params.dark | default "auto" -}}
-    {{ if not (eq $dark "off") -}}
-        {{ $resources = $resources | append (resources.Get "css/dark.css" | resources.ExecuteAsTemplate "dark.css" .) -}}
-    {{ end -}}
-
-    {{ if .Site.Params.highlight -}}
-        {{ $resources = $resources | append (resources.Get "css/syntax.css") -}}
-    {{ end -}}
-
-    {{ $css := $resources | resources.Concat "css/style.css" | minify }}
+    {{- $resources := slice (resources.Get "css/main.css") -}}
+    {{- if .Site.Params.highlight -}}
+        {{- $resources = $resources | append (resources.Get "css/syntax.css") -}}
+    {{- end -}}
+    {{- $css := $resources | resources.Concat "css/style.css" | minify }}
     {{ printf `<link rel="stylesheet" href="%s">` $css.RelPermalink | safeHTML }}
-
-    <link rel="canonical" href="{{ .Permalink }}" />
-    <title>{{ .Title }}</title>
 
     <script data-goatcounter="https://asadowski.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>

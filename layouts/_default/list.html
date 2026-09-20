@@ -1,0 +1,9 @@
+{{ define "main" }}
+<header class="page-header">
+    <a href="{{ .Site.Home.Permalink }}" class="back-link">{{ .Site.Title }}</a>
+    <h1>{{ .Title }}</h1>
+</header>
+<ul id="items">
+    {{ range .Pages.ByDate.Reverse }}{{ .Render "li" }}{{ end }}
+</ul>
+{{ end }}

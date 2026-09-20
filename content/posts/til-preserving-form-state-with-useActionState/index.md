@@ -2,6 +2,8 @@
 title: "Preserving Form State with React's useActionState Hook"
 date: 2025-03-01
 draft: false
+aliases:
+  - /til-preserving-form-state-with-reacts-useactionstate-hook/
 ---
 
 React recently introduced the [`useActionState`](https://react.dev/reference/react/useActionState) hook, and while the official docs provide basic examples, I immediately wanted to tackle a common real-world scenario: preserving form input values after submission errors.

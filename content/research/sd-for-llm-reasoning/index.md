@@ -1,6 +1,7 @@
 ---
 title: "Structured Decomposition for LLM Reasoning: Cross-Domain Validation and Semantic Web Integration"
 date: 2026-01-06
+venue: "Preprint"
 draft: false
 ---
 

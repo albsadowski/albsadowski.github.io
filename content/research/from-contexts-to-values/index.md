@@ -1,6 +1,7 @@
 ---
 title: "From Contexts to Values: Context-Dependent Defeat in Abstract Argumentation"
 date: 2026-08-18
+venue: "SAFA 2026"
 draft: false
 ---
 
