@@ -2,6 +2,13 @@
 title: "Structured Decomposition for LLM Reasoning: Cross-Domain Validation and Semantic Web Integration"
 date: 2026-01-06
 venue: "Preprint"
+links:
+  - name: arXiv
+    url: "https://arxiv.org/abs/2601.01609"
+  - name: Code
+    url: "https://github.com/albsadowski/structured-decomposition-swj"
+  - name: Dataset
+    url: "https://github.com/albsadowski/ruleeval-xd"
 draft: false
 ---
 

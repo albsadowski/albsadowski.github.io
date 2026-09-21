@@ -24,8 +24,8 @@
 {{ with (where .Site.RegularPages "Section" "research").ByDate.Reverse }}
 <div class="section" id="publications">
     <h4>Publications</h4>
-    <ul id="items">
-        {{ range . }}{{ .Render "li" }}{{ end }}
+    <ul class="pub-list">
+        {{ range . }}{{ .Render "publication" }}{{ end }}
     </ul>
 </div>
 {{ end }}

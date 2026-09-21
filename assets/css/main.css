@@ -188,16 +188,79 @@ ul.plain li {
     margin-bottom: 2rem;
 }
 
-ul#items .venue,
 ul#items time {
     color: var(--text-muted);
     font-size: 0.875rem;
     white-space: nowrap;
 }
 
-ul#items .venue::before,
 ul#items time::before {
     content: "\00a0\00b7\00a0";
+}
+
+/* Publications */
+ul.pub-list {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+ul.pub-list > li {
+    margin-bottom: 1.25rem;
+}
+
+.pub-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+
+.pub-venue,
+.pub-citation {
+    margin: 0.15rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.pub-venue {
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.pub-citation {
+    color: var(--text-muted);
+}
+
+.pub-status {
+    font-style: normal;
+    color: var(--text-muted);
+}
+
+.pub-status::before {
+    content: "\00a0\00b7\00a0";
+}
+
+ul.pub-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    list-style: none;
+    margin: 0.35rem 0 0;
+    padding-left: 0;
+    font-size: 0.8125rem;
+}
+
+ul.pub-links li {
+    margin-bottom: 0;
+}
+
+ul.pub-links li::before {
+    content: "[";
+    color: var(--text-muted);
+}
+
+ul.pub-links li::after {
+    content: "]";
+    color: var(--text-muted);
 }
 
 /* Code */
@@ -342,6 +405,10 @@ th, td {
         display: block;
         overflow-x: auto;
     }
+
+    ul.pub-links {
+        gap: 0.5rem;
+    }
 }
 
 /* Print */
@@ -361,5 +428,10 @@ th, td {
     a[href^="http"]::after {
         content: " (" attr(href) ")";
         font-size: 0.8em;
+    }
+
+    ul.pub-links li::before,
+    ul.pub-links li::after {
+        content: none;
     }
 }

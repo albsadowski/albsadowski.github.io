@@ -1,0 +1,20 @@
+{{- $short := .Params.venue -}}
+{{- $full := .Params.venue_full -}}
+{{- $url := .Params.venue_url -}}
+{{- if $short }}
+<p class="pub-venue">
+    {{- if $full }}{{ $full }} ({{ end }}{{ if $url }}<a href="{{ $url }}">{{ $short }}</a>{{ else }}{{ $short }}{{ end }}{{ if $full }}){{ else if not .Date.IsZero }}, {{ .Date.Format "2006" }}{{ end }}
+    {{- with .Params.colocated }}, co-located with {{ with $.Params.colocated_full }}{{ . }} ({{ end }}{{ with $.Params.colocated_url }}<a href="{{ . }}">{{ $.Params.colocated }}</a>{{ else }}{{ $.Params.colocated }}{{ end }}{{ with $.Params.colocated_full }}){{ end }}{{ end }}
+    {{- with .Params.status }}<span class="pub-status">{{ . }}</span>{{ end }}
+</p>
+{{- end }}
+{{- with .Params.citation }}
+<p class="pub-citation">{{ . }}</p>
+{{- end }}
+{{- with .Params.links }}
+<ul class="pub-links">
+    {{- range . }}
+    <li><a href="{{ .url }}">{{ .name }}</a></li>
+    {{- end }}
+</ul>
+{{- end }}
