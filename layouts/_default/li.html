@@ -1,4 +1,13 @@
+{{- $gist := .Description -}}
+{{- if not $gist -}}
+    {{- with findRE `(?s)<p>.*?</p>` .Content 1 -}}
+        {{- $gist = index . 0 | plainify -}}
+    {{- end -}}
+{{- end -}}
 <li>
-    <a href="{{ .Permalink }}">{{ .Title }}</a>
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>
+    <a class="note-title" href="{{ .Permalink }}">{{ .Title }}</a>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2006" }}</time>
+    {{- with $gist }}
+    <p class="note-gist">{{ . | chomp | htmlUnescape | truncate 180 }}</p>
+    {{- end }}
 </li>

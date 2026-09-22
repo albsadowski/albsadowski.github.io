@@ -173,7 +173,7 @@ hr {
     margin-top: 0;
 }
 
-/* Contact + item lists */
+/* Contact list */
 ul.plain {
     list-style: none;
     margin: 0;
@@ -188,14 +188,42 @@ ul.plain li {
     margin-bottom: 2rem;
 }
 
+/* Notes */
+ul#items {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+ul#items > li {
+    margin-bottom: 1.25rem;
+}
+
+.note-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.note-title:hover {
+    color: var(--accent);
+}
+
 ul#items time {
     color: var(--text-muted);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     white-space: nowrap;
 }
 
 ul#items time::before {
     content: "\00a0\00b7\00a0";
+}
+
+.note-gist {
+    margin: 0.15rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
 }
 
 /* Publications */

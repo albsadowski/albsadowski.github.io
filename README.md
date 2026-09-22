@@ -18,6 +18,9 @@ hugo server
 
 - `content/posts/` - notes. URLs come from the **title** (`permalinks.posts = "/:title/"`),
   not the directory, so retitling a note moves its URL; add an `aliases` entry if you do.
+  A note's list entry (front page and `/posts/`) shows its **first paragraph** truncated to
+  180 characters. An optional `description:` key overrides that gist, and doubles as the
+  page's `<meta name="description">` and `og:description`.
 - `content/research/` - one file per publication, **metadata only**. Nothing under
   `/research/` is rendered as a page: `content/research/_index.md` carries a `cascade`
   that sets `build: render: never` on the section and every paper in it, so the front-page
