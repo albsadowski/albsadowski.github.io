@@ -4,7 +4,10 @@ date: 2026-07-18
 venue: "KES 2026"
 venue_full: "30th International Conference on Knowledge-Based and Intelligent Information & Engineering Systems"
 venue_url: "http://kes2026.kesinternational.org/"
+citation: "Procedia Computer Science 292 (2026) 1232-1241"
 links:
+  - name: DOI
+    url: "https://doi.org/10.1016/j.procs.2026.09.198"
   - name: arXiv
     url: "https://arxiv.org/abs/2608.12326"
   - name: Code
@@ -15,6 +18,10 @@ draft: false
 ---
 
 Presented at 30th International Conference on Knowledge-Based and Intelligent Information & Engineering Systems ([KES 2026](http://kes2026.kesinternational.org/)).
+
+Procedia Computer Science 292 (2026) 1232-1241
+
+DOI: [10.1016/j.procs.2026.09.198](https://doi.org/10.1016/j.procs.2026.09.198)
 
 Preprint: [arXiv](http://arxiv.org/abs/2608.12326)
 
