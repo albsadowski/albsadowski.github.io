@@ -61,5 +61,6 @@ Intelligence (ICTAI 2026)`. So `venue_full` carries no acronym and `venue` carri
 year. Without `venue_full` the short tag stands alone and the year from `date` is
 appended instead (`Preprint, 2026`).
 
-Keep `links` names to the house vocabulary, in this order: **Proceedings, DOI, arXiv,
-Code, Dataset, Slides**.
+Keep `links` names to the house vocabulary, in this order: **Proceedings, OpenReview, DOI,
+arXiv, Code, Dataset, Slides**. Use OpenReview for venues without proceedings (e.g.
+workshops) where the paper is public on OpenReview.

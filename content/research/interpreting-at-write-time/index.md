@@ -8,6 +8,8 @@ colocated: "NeurIPS 2026"
 colocated_full: "Conference on Neural Information Processing Systems"
 colocated_url: "https://neurips.cc/Conferences/2026"
 links:
+  - name: OpenReview
+    url: "https://openreview.net/forum?id=7seRV8R7fK"
   - name: arXiv
     url: "https://arxiv.org/abs/2610.02897"
   - name: Code
@@ -17,6 +19,8 @@ draft: false
 
 Accepted to Workshop on Personalized, Aligned, Long-term Memory for AI Systems
 ([PALM 2026](https://palm-neurips-2026.github.io/)) at [NeurIPS 2026](https://neurips.cc/Conferences/2026).
+
+Paper: [OpenReview](https://openreview.net/forum?id=7seRV8R7fK)
 
 Preprint: [arXiv](https://arxiv.org/abs/2610.02897)
 
