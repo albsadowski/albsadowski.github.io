@@ -8,6 +8,8 @@ colocated: "AAMAS 2026"
 colocated_full: "International Conference on Autonomous Agents and Multiagent Systems"
 colocated_url: "https://cyprusconferences.org/aamas2026/"
 links:
+  - name: DOI
+    url: "https://doi.org/10.1007/978-3-032-38436-2_19"
   - name: arXiv
     url: "https://arxiv.org/abs/2604.03588"
   - name: Code
@@ -20,6 +22,8 @@ draft: false
 Presented at 8th International Workshop on
 EXplainable, Trustworthy, and Responsible AI and Multi-Agent Systems
 ([EXTRAAMAS 2026](https://extraamas.ehealth.hevs.ch/index.html)); co-hosted with [AAMAS 2026](https://cyprusconferences.org/aamas2026/).
+
+DOI: [10.1007/978-3-032-38436-2_19](https://doi.org/10.1007/978-3-032-38436-2_19)
 
 Preprint: [arXiv](https://arxiv.org/abs/2604.03588)
 
